@@ -17,21 +17,21 @@ define(['jquery',
 	modopen.fade_effect = null;
 	modopen.afterOpened = null;
 
-	modopen.cerrar_modal = function(){
+	modopen.cerrarModal = function(){
 		$("#" + modopen.id_modal).modal('hide');
 	}
 	
-	modopen.off_listeners = function(){
+	modopen.offListeners = function(){
 		$("#" + modopen.id_modal).off();
 		$("#" + modopen.id_modal).remove();
 	}
 	
-	modopen.iniciar_listeners = function(){
-		$("#" + modopen.id_modal).one("hidden.bs.modal", modopen.off_listeners);
+	modopen.iniciarListeners = function(){
+		$("#" + modopen.id_modal).one("hidden.bs.modal", modopen.offListeners);
 	}
 
 
-	modopen.insertar_y_abrir_modal_seleccion_en_dom = function(){
+	modopen.insertarYAbrirModalSeleccionEnDom = function(){
 		if(!$("#" + modopen.id_modal).length){
 			var data = {
 				title: modopen.title, 
@@ -48,14 +48,14 @@ define(['jquery',
 				backdrop: modopen.backdrop_static
 			});
 
-			modopen.iniciar_listeners();
+			modopen.iniciarListeners();
 		}
 	}
 	
 	
 	modopen.print = function(){
 
-		modopen.insertar_y_abrir_modal_seleccion_en_dom();
+		modopen.insertarYAbrirModalSeleccionEnDom();
 
 		$("#" + modopen.id_modal).one("shown.bs.modal", function(e){
 			if(modopen.afterOpened != null){
@@ -89,7 +89,7 @@ define(['jquery',
 	}
 	
 	return {
-		iniciar: function(params){
+		init: function(params){
 			return modopen.iniciar(params);
 		}, 
 
@@ -103,31 +103,10 @@ define(['jquery',
 			return $("#" + modopen.id_modal + " .modal-body");
 		}, 
 
-		cerrar: function(){
-			return modopen.cerrar_modal();
+		close: function(){
+			return modopen.cerrarModal();
 		}
 	};
-
-
-	/*
-	modal-opener.js 
-
-	iniciar(params)
-	params = {
-		title: string optional (titulo que se mostrara en la modal), 
-		id_modal: string required (el id html que identificara la modal), 
-		fade_effect: boolean, optional (un efecto animado al mostrarse y cerrarse), 
-		modopen.backdrop_static: booleen, optional (si se activa, no se puede cerrar la modal pinchando en el fondo)
-		afterOpened: function optional (un callback de lo que debe hacer tras abrirse la modal)
-	}
-
-	getBody()
-	Devuelve el elemento jQuery correspondiente al nodo del cuerpo de la modal, 
-
-	cerrar()
-	Cierra la ventana modal
-
-	*/
 
 
 });

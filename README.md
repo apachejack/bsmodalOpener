@@ -9,7 +9,7 @@ Documentación
 
 modal-opener.js   
 
-`iniciar(params)`   
+`init(params)`   
 params = {
 	title: string optional (titulo que se mostrara en la modal),  
 	id_modal: string required (el id html que identificara la modal),  
@@ -21,5 +21,5 @@ params = {
 `getBody()`   
 Devuelve el elemento jQuery correspondiente al nodo del cuerpo de la modal,   
 
-`cerrar()`   
+`close()`   
 Cierra la ventana modal   
